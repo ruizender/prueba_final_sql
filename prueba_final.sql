@@ -41,4 +41,11 @@ UPDATE invoice SET subtotal = 60, iva = 11, total = 71 WHERE n_invoice=8;
 UPDATE invoice SET subtotal = 83, iva = 16, total = 99 WHERE n_invoice=9;
 UPDATE invoice SET subtotal = 108, iva = 21, total = 129 WHERE n_invoice=10;
 
+--PARTE 3
+--¿Que cliente realizó la compra más cara?
+SELECT clients.name AS compra_mas_cara, invoice.total FROM clients INNER JOIN invoice ON clients.id = invoice.id_clients ORDER BY invoice.total DESC LIMIT 1;
+--¿Que cliente pagó sobre 100 de monto?
+SELECT clients.name AS compras_sobre_100 FROM clients INNER JOIN invoice ON clients.id = invoice.id_clients WHERE invoice.total > 100;
+--¿Cuantos clientes han comprado el producto 6.
+SELECT COUNT(invoice.id_clients) AS Compras_producto_6 FROM invoice INNER JOIN invoice_products ON invoice.n_invoice = invoice_products.id_invoice WHERE invoice_products.id_products = 6;
 
